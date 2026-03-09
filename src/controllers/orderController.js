@@ -1,43 +1,27 @@
 import * as service from '../services/orderService.js';
+import { catchAsync } from '../utils/handler.js';
 
-async function storeOrder(req, res) {
-  try {
-    const order = await service.createOrder(req.body);
-    res.status(201).json(order);
-  } catch (err) {
-    const status = err.message.includes('already exists') ? 409 : 500;
-    res.status(status).json({ error: err.message });
-  }
-}
+export const storeOrder = catchAsync(async (req, res) => {
+  const order = await service.createOrder(req.body);
+  res.status(201).json(order);
+});
 
-async function indexOrder(req, res) {
-  try {
-    const order = await service.getOrder(req.params.id);
-    res.json(order);
-  } catch (err) {
-    const status = err.message === 'Order not found' ? 404 : 500;
-    res.status(status).json({ error: err.message });
-  }
-}
+export const indexOrder = catchAsync(async (req, res) => {
+  const order = await service.getOrder(req.params.id);
+  res.json(order);
+});
 
-async function showOrders(req, res) {
+export const showOrders = catchAsync(async (req, res) => {
   const orders = await service.listOrders();
   res.json(orders);
-}
+});
 
-async function updateOrder(req, res) {
-  try {
-    const order = await service.updateOrder(req.params.id, req.body);
-    res.json(order);
-  } catch (err) {
-    const status = err.message === 'Order not found' ? 404 : 500;
-    res.status(status).json({ error: err.message });
-  }
-}
+export const updateOrder = catchAsync(async (req, res) => {
+  const order = await service.updateOrder(req.params.id, req.body);
+  res.json(order);
+});
 
-async function removeOrder(req, res) {
+export const removeOrder = catchAsync(async (req, res) => {
   await service.deleteOrder(req.params.id);
   res.status(204).send();
-}
-
-export { storeOrder, indexOrder, showOrders, updateOrder, removeOrder };
+});
