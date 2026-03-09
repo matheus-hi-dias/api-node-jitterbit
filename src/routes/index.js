@@ -1,21 +1,23 @@
 import { Router } from 'express';
 import { healthCheck } from '../controllers/healthController.js';
-import {
-  indexOrder,
-  removeOrder,
-  showOrders,
-  storeOrder,
-  updateOrder,
-} from '../controllers/orderController.js';
+import * as orderController from '../controllers/orderController.js';
+import * as authController from '../controllers/authController.js';
+import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
+// Rotas Públicas
 router.get('/health', healthCheck);
+router.post('/register', authController.register);
+router.post('/login', authController.login);
 
-router.post('/order', storeOrder);
-router.get('/order/list', showOrders);
-router.get('/order/:id', indexOrder);
-router.put('/order/:id', updateOrder);
-router.delete('/order/:id', removeOrder);
+// Middleware de autenticação
+router.use(authenticateToken);
+// Rotas privadas
+router.post('/order', orderController.storeOrder);
+router.get('/order/list', orderController.showOrders);
+router.get('/order/:id', orderController.indexOrder);
+router.put('/order/:id', orderController.updateOrder);
+router.delete('/order/:id', orderController.removeOrder);
 
 export default router;
