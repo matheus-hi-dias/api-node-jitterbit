@@ -6,6 +6,9 @@ async function storeOrder(req, res) {
 
     return res.status(201).json(order);
   } catch (err) {
+    if (err.message === 'Order with this ID already exists') {
+      return res.status(409).json({ error: err.message });
+    }
     return res.status(500).json({ error: err.message });
   }
 }
@@ -13,10 +16,12 @@ async function storeOrder(req, res) {
 async function indexOrder(req, res) {
   try {
     const order = await service.getOrder(req.params.id);
-
     return res.json(order);
   } catch (err) {
-    return res.status(404).json({ error: err.message });
+    if (err.message === 'Order not found') {
+      return res.status(404).json({ error: err.message });
+    }
+    return res.status(500).json({ error: err.message });
   }
 }
 
@@ -31,6 +36,9 @@ async function updateOrder(req, res) {
     const order = await service.updateOrder(req.params.id, req.body);
     return res.json(order);
   } catch (err) {
+    if (err.message === 'Order not found') {
+      return res.status(404).json({ error: err.message });
+    }
     return res.status(500).json({ error: err.message });
   }
 }

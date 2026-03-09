@@ -25,6 +25,10 @@ async function createOrder(order) {
     return order;
   } catch (err) {
     await client.query('ROLLBACK');
+    if (err.code === '23505') {
+      // Violação de chave primária (orderId já existe)
+      throw new Error('Order with this ID already exists');
+    }
     throw err;
   } finally {
     client.release();
@@ -35,6 +39,9 @@ async function getOrderById(orderId) {
   const order = await pool.query(`SELECT * FROM "Order" WHERE "orderId"=$1`, [
     orderId,
   ]);
+  if (order.rows.length === 0) {
+    return null;
+  }
 
   const items = await pool.query(`SELECT * FROM "Items" WHERE "orderId"=$1`, [
     orderId,
@@ -56,10 +63,15 @@ async function updateOrder(order) {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
-    await client.query(
+    const result = await client.query(
       `UPDATE "Order" SET "value"=$1, "creationDate"=$2 WHERE "orderId"=$3`,
       [order.value, order.creationDate, order.orderId],
     );
+
+    if (result.rowCount === 0) {
+      throw new Error('Order not found');
+    }
+
     await client.query(`DELETE FROM "Items" WHERE "orderId"=$1`, [
       order.orderId,
     ]);
