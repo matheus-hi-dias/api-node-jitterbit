@@ -1,0 +1,267 @@
+{
+  "info": {
+    "_postman_id": "e2df5455-9161-46a8-8a81-4717da7295b6",
+    "name": "api-node-jitterbit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26203817"
+  },
+  "item": [
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "New Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 10000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1000\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/order",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 10000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1000\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/order/list",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "order",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order By Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 10000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1000\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/order/v10089015vdb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "order",
+                "v10089015vdb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 1500,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1500\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/order/v10089015vdb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "order",
+                "v10089015vdb"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Order By Id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numeroPedido\": \"v10089015vdb-01\",\r\n  \"valorTotal\": 10000,\r\n  \"dataCriacao\": \"2023-07-19T12:24:11.5299601+00:00\",\r\n  \"items\": [\r\n    {\r\n      \"idItem\": \"2434\",\r\n      \"quantidadeItem\": 1,\r\n      \"valorItem\": 1000\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/order/v10089015vdb",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "order",
+                "v10089015vdb"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"teste\",\r\n    \"password\": \"teste\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"teste\",\r\n    \"password\": \"teste\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
